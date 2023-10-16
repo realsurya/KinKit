@@ -74,7 +74,15 @@ def DCMtoEA231(DCM):
     return np.array([np.arctan2(DCM[2][0], DCM[0][0]),
                      -np.arcsin(DCM[1][0]),
                      np.arctan2(DCM[1][2], DCM[1][1])])
-def DCMtoEA232(DCM): #IN PROG
-    return np.array([np.arctan2(DCM[2][0], DCM[0][0]),
-                     -np.arcsin(DCM[1][0]),
-                     np.arctan2(DCM[1][2], DCM[1][1])])
+def DCMtoEA232(DCM):
+    return np.array([np.arctan2(DCM[2][1], DCM[0][1]),
+                     np.arccos(DCM[1][1]),
+                     np.arctan2(DCM[1][2], -DCM[1][0])])
+def DCMtoEA312(DCM):
+    return np.array([np.arctan2(DCM[0][1], DCM[1][1]),
+                     -np.arcsin(DCM[2][1]),
+                     np.arctan2(DCM[2][0], DCM[2][2])])
+def DCMtoEA313(DCM): # IN PROG
+    return np.array([np.arctan2(DCM[0][2], DCM[1][2]),
+                     np.arccos(DCM[2][2]),
+                     np.arctan2(DCM[2][0], -DCM[2][1])])
