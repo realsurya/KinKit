@@ -17,4 +17,4 @@ Inverse Mappimng:
 - MRP to DCM
 - EP to DCM
 
-Check `demo.ipynb` for a demonstration of the provided functions.
+Check `demo.ipynb` for a demonstration of provided functions.
