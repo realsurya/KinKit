@@ -1,5 +1,5 @@
 # KinKit
-Toolbox for kinematics and attitude dynamics in Python.
+Simple but useful toolbox for kinematics and attitude dynamics in Python. Written with numpy only.
 
 Currently Supporting:
 
