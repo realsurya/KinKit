@@ -17,7 +17,10 @@ def R1(t):
                      [0,-1*s(t), c(t)]])
 
 # Euler Angle to DCM function
-def EAtoDCM(ax1, ax2, ax3, ang1, ang2, ang3):
+def EAtoDCM(seq, ang1, ang2, ang3):
+    ax1 = int(str(seq)[0])
+    ax2 = int(str(seq)[1])
+    ax3 = int(str(seq)[2])
     # Find sequence
     match ax1:
         case 1:
@@ -46,43 +49,53 @@ def EAtoDCM(ax1, ax2, ax3, ang1, ang2, ang3):
     return DCM
 
 # DCM to Euler Angle Functions
-def DCMtoEA121(DCM):
-    return np.array([np.arctan2(DCM[1][0], DCM[2][0]),
-                     np.arccos(DCM[0][0]),
-                     np.arctan2(DCM[0][1], -DCM[0][2])])
-def DCMtoEA123(DCM):
-    return np.array([np.arctan2(DCM[1][2], DCM[2][2]),
-                     -np.arcsin(DCM[0][2]),
-                     np.arctan2(DCM[0][1], DCM[0][0])])
-def DCMtoEA131(DCM):
-    return np.array([np.arctan2(DCM[2][0], -DCM[1][0]),
-                     np.arccos(DCM[0][0]),
-                     np.arctan2(DCM[0][2], DCM[0][1])])
-def DCMtoEA132(DCM):
-    return np.array([np.arctan2(-DCM[2][1], DCM[1][1]),
-                     np.arcsin(DCM[0][1]),
-                     np.arctan2(-DCM[0][2], DCM[0][0])])
-def DCMtoEA212(DCM):
-    return np.array([np.arctan2(DCM[0][1], -DCM[2][1]),
-                     np.arccos(DCM[1][1]),
-                     np.arctan2(DCM[1][0], DCM[1][2])])
-def DCMtoEA213(DCM):
-    return np.array([np.arctan2(-DCM[0][2], DCM[2][2]),
-                     np.arcsin(DCM[1][2]),
-                     np.arctan2(-DCM[1][0], DCM[1][1])])
-def DCMtoEA231(DCM):
-    return np.array([np.arctan2(DCM[2][0], DCM[0][0]),
-                     -np.arcsin(DCM[1][0]),
-                     np.arctan2(DCM[1][2], DCM[1][1])])
-def DCMtoEA232(DCM):
-    return np.array([np.arctan2(DCM[2][1], DCM[0][1]),
-                     np.arccos(DCM[1][1]),
-                     np.arctan2(DCM[1][2], -DCM[1][0])])
-def DCMtoEA312(DCM):
-    return np.array([np.arctan2(DCM[0][1], DCM[1][1]),
-                     -np.arcsin(DCM[2][1]),
-                     np.arctan2(DCM[2][0], DCM[2][2])])
-def DCMtoEA313(DCM): # IN PROG
-    return np.array([np.arctan2(DCM[0][2], DCM[1][2]),
-                     np.arccos(DCM[2][2]),
-                     np.arctan2(DCM[2][0], -DCM[2][1])])
+def DCMtoEA(sequence, DCM):
+    match sequence:
+        case 121:
+            return np.array([np.arctan2(DCM[1][0], DCM[2][0]),
+                             np.arccos(DCM[0][0]),
+                             np.arctan2(DCM[0][1], -DCM[0][2])])
+        case 123:
+            return np.array([np.arctan2(DCM[1][2], DCM[2][2]),
+                             -np.arcsin(DCM[0][2]),
+                             np.arctan2(DCM[0][1], DCM[0][0])])
+        case 131 :
+            return np.array([np.arctan2(DCM[2][0], -DCM[1][0]),
+                             np.arccos(DCM[0][0]),
+                             np.arctan2(DCM[0][2], DCM[0][1])])
+        case 132:
+            return np.array([np.arctan2(-DCM[2][1], DCM[1][1]),
+                             np.arcsin(DCM[0][1]),
+                             np.arctan2(-DCM[0][2], DCM[0][0])])
+        case 212:
+            return np.array([np.arctan2(DCM[0][1], -DCM[2][1]),
+                             np.arccos(DCM[1][1]),
+                             np.arctan2(DCM[1][0], DCM[1][2])])
+        case 213:
+            return np.array([np.arctan2(-DCM[0][2], DCM[2][2]),
+                             np.arcsin(DCM[1][2]),
+                             np.arctan2(-DCM[1][0], DCM[1][1])])
+        case 231:
+            return np.array([np.arctan2(DCM[2][0], DCM[0][0]),
+                             -np.arcsin(DCM[1][0]),
+                             np.arctan2(DCM[1][2], DCM[1][1])])
+        case 232:
+            return np.array([np.arctan2(DCM[2][1], DCM[0][1]),
+                             np.arccos(DCM[1][1]),
+                             np.arctan2(DCM[1][2], -DCM[1][0])])
+        case 312:
+            return np.array([np.arctan2(DCM[0][1], DCM[1][1]),
+                             -np.arcsin(DCM[2][1]),
+                             np.arctan2(DCM[2][0], DCM[2][2])])
+        case 313:
+            return np.array([np.arctan2(DCM[0][2], DCM[1][2]),
+                             np.arccos(DCM[2][2]),
+                             np.arctan2(DCM[2][0], -DCM[2][1])])
+        case 321:
+            return np.array([np.arctan2(-DCM[1][0], DCM[0][0]),
+                             np.arcsin(DCM[2][0]),
+                             np.arctan2(-DCM[2][1], DCM[2][2])])
+        case 313:
+            return np.array([np.arctan2(DCM[1][2], -DCM[0][2]),
+                             np.arccos(DCM[2][2]),
+                             np.arctan2(DCM[2][1], DCM[2][0])])
