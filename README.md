@@ -17,4 +17,7 @@ Inverse Mappimng:
 - MRP to DCM
 - EP to DCM
 
+Additional Functions:
+- Axisymmetric Body Equations of Motion function (`dwdt_Bframe`).
+
 Check `demo.ipynb` for a demonstration of provided functions.
