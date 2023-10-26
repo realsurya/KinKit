@@ -186,3 +186,21 @@ def dwdt_Bframe(t, omega, I, L):
               ((-(I[0]-I[2])*omega[0]*omega[2]) + (L[1]))/I[1],
               ((-(I[1]-I[0])*omega[0]*omega[1]) + (L[2]))/I[2]]
     return omedot
+
+def EP_KDE(t, epsilon, omega):
+    omegaA = np.array([omega[0], omega[1], omega[2], 0])
+    magic = np.array([[EP[3], -EP[2], EP[1], EP[0]],
+                      [EP[2], EP[3], -EP[0], EP[1]],
+                      [-EP[1], EP[0], EP[3], EP[2]],
+                      [-EP[0], -EP[1], -EP[2], EP[3]]])
+    epsilonDot = (0.5)*np.matmul(magic, omegaA)
+    return epsilonDot
+
+def MRP_KDE_std(t, MRP, omega):
+    ss = np.dot(MRP, MRP)
+    omegaA = np.array([omega[0], omega[1], omega[2]])
+    magic = np.array([[1-ss+2*(MRP[0]**2), 2*(MRP[0]*MRP[1] - MRP[2]), 2*(MRP[0]*MRP[2] + MRP[1])],
+                      [2*(MRP[1]*MRP[0] + MRP[2]), 1-ss+2*(MRP[1]**2), 2*(MRP[1]*MRP[2] - MRP[0])],
+                      [2*(MRP[2]*MRP[0] - MRP[1]), 2*(MRP[2]*MRP[1] + MRP[0]), 1-ss+2*(MRP[2]**2)]])
+    sigmaDot = (0.25)*np.matmul(magic, omegaA)
+    return sigmaDot
