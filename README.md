@@ -17,6 +17,10 @@ Inverse Mappimng:
 - MRP to DCM
 - EP to DCM
 
+Kinematic Differential Equations:
+- Euler Parameter KDE
+- Modified Rodrigues Parameter KDE
+
 Additional Functions:
 - Axisymmetric Body Equations of Motion function (`dwdt_Bframe`).
 
