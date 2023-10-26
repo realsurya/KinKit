@@ -180,3 +180,9 @@ def DCMtoEP_standard(DCM):
         return -1 * np.array([eps13[0], eps13[1], eps13[2], eps4])
     else:
         return np.array([eps13[0], eps13[1], eps13[2], eps4])
+
+def dwdt_Bframe(t, omega, I, L):
+    omedot = [((-(I[2]-I[1])*omega[1]*omega[2]) + (L[0]))/I[0],
+              ((-(I[0]-I[2])*omega[0]*omega[2]) + (L[1]))/I[1],
+              ((-(I[1]-I[0])*omega[0]*omega[1]) + (L[2]))/I[2]]
+    return omedot
